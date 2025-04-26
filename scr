@@ -33,6 +33,16 @@ export PERL_HASH_SEED=0
 #    fi
 #done
 
+FILE=results/ibd-network
+rm -f $FILE.rl
+${stepminer} boolean bitMatrix $FILE.rl \
+ data/peters-2017-ibd-bv.txt \
+ $FILE.ph All 0.1 2.5 0.05
+cp $FILE.rl $FILE-1.rl
+${stepminer} boolean bitMatrixFill $FILE-1.rl
+${stepminer} boolean bitMatrixFillStats $FILE-1.rl
+${stepminer} boolean bitMatrixPrint $FILE-1.rl > $FILE-res.txt
+
 
 #FILE=results/ibd-network
 #rm -f $FILE.rl
